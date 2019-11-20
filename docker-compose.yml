@@ -1,8 +1,27 @@
 version: '3.4'
 
 services:
+  mysql:
+    image: mysql/mysql-server:8.0 
+    container_name: mysql
+    ports:
+    - 3306:3306
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+    - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: bla
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: crud_test
+
   crudtest:
+    depends_on: 
+      - mysql
     image: ${DOCKER_REGISTRY-}crudtest
     build:
       context: .
       dockerfile: CrudTest/Dockerfile
+
+volumes:
+    db_data:
