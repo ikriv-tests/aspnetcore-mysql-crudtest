@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  crudtest:
+    image: ${DOCKER_REGISTRY-}crudtest
+    build:
+      context: .
+      dockerfile: CrudTest/Dockerfile
