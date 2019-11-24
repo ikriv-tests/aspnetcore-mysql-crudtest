@@ -7,20 +7,22 @@
 <h1>Users</h1>
 
 <div>
-    <table>
-        <tr>
-            <th>Id</th>
-            <th>E-mail</th>
-            <th>User Name</th>
-            <th>Real Name</th>
-        </tr>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User Name</th>
+                <th>Full Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
         @foreach (var user in Model.Users)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => user.Id)</td>
-                <td>@Html.DisplayFor(modelItem => user.Email)</td>
                 <td>@Html.DisplayFor(modelItem => user.Name)</td>
                 <td>@Html.DisplayFor(modelItem => user.RealName)</td>
+                <td>@Html.DisplayFor(modelItem => user.Email)</td>
             </tr>
         }
     </table>
